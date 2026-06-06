@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Etude Réseau & Branchements</title>
+
+
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- ================= LOGIN ================= -->
+
+
+
+<div id="loginSection" class="login-container">
+
+
+
+    <div class="login-card">
+
+
+
+        <img src="assets/logo.png" class="logo-login">
+
+
+
+        <h1>Connexion</h1>
+
+
+
+        <input type="text"
+
+               id="loginUser"
+
+               placeholder="Nom d'utilisateur">
+
+
+
+        <input type="password"
+
+               id="loginPass"
+
+               placeholder="Mot de passe">
+
+
+
+        <button id="btnLogin">
+
+            ACCÉDER
+
+        </button>
+
+
+
+        <div id="loginError" class="error hidden">
+
+            Identifiant ou mot de passe incorrect
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+<!-- ================= APPLICATION ================= -->
+
+
+
+<div id="appSection" class="hidden">
+
+
+
+    <!-- HEADER -->
+
+
+
+    <header>
+
+
+
+        <img src="assets/logo.png" class="logo-header">
+
+
+
+        <div class="header-title">
+
+
+
+            <h2>
+
+                DIRECTION PREFECTORALE
+
+            </h2>
+
+
+
+            <h2>
+
+                AIN CHOCK HAY HASSANI
+
+            </h2>
+
+
+
+            <h2>
+
+                DEPARTEMENT ETUDES ET TRAVAUX
+
+            </h2>
+
+
+
+            <h2>
+
+                DIVISION EAU POTABLE
+
+            </h2>
+
+
+
+        </div>
+
+
+
+    </header>
+
+
+
+    <!-- CONTENU -->
+
+
+
+    <main>
+
+
+
+        <!-- FORMULAIRE -->
+
+
+
+        <section class="card">
+
+
+
+            <h3>Informations Tronçon</h3>
+
+
+
+            <label>Nom du projet</label>
+
+            <input type="text"
+
+                   id="nomProjet"
+
+                   placeholder="Nom du projet">
+
+
+
+            <label>Nom du tronçon</label>
+
+            <input type="text" id="troncon">
+
+
+
+            <label>Diamètre Nominal</label>
+
+
+
+            <div class="radio-group">
+
+
+
+                <label><input type="radio" name="dn" value="75">75</label>
+
+                <label><input type="radio" name="dn" value="90">90</label>
+
+                <label><input type="radio" name="dn" value="110">110</label>
+
+                <label><input type="radio" name="dn" value="160">160</label>
+
+                <label><input type="radio" name="dn" value="225">225</label>
+
+                <label><input type="radio" name="dn" value="315">315</label>
+
+
+
+            </div>
+
+
+
+            <h4>Revêtements</h4>
+
+
+
+            <label>TN</label>
+
+            <input type="number" id="tn" value="0">
+
+
+
+            <label>Chaussée</label>
+
+            <input type="number" id="chaussee" value="0">
+
+
+
+            <label>Pavé</label>
+
+            <input type="number" id="pave" value="0">
+
+
+
+            <label>Carrelage O</label>
+
+            <input type="number" id="carrelageO" value="0">
+
+
+
+            <label>Carrelage S</label>
+
+            <input type="number" id="carrelageS" value="0">
+
+
+
+            <label>Béton</label>
+
+            <input type="number" id="beton" value="0">
+
+
+
+            <h4>Vannes & Raccordements</h4>
+
+
+
+            <label>Vanne <= 150</label>
+
+            <input type="number" id="vanne1" value="0">
+
+
+
+            <label>Vanne >150 <=300</label>
+
+            <input type="number" id="vanne2" value="0">
+
+
+
+            <label>Raccordement <=200</label>
+
+            <input type="number" id="raccord1" value="0">
+
+
+
+            <label>Raccordement >200 <=300</label>
+
+            <input type="number" id="raccord2" value="0">
+
+
+
+            <h4>Perçage</h4>
+
+
+
+            <div class="radio-group">
+
+
+
+                <label>
+
+                    <input type="radio"
+
+                           name="percage"
+
+                           value="PVC">
+
+                    PVC
+
+                </label>
+
+
+
+                <label>
+
+                    <input type="radio"
+
+                           name="percage"
+
+                           value="FD">
+
+                    FD
+
+                </label>
+
+
+
+                <label>
+
+                    <input type="radio"
+
+                           name="percage"
+
+                           value="AC">
+
+                    AC
+
+                </label>
+
+
+
+            </div>
+
+
+
+            <label>PI</label>
+
+            <input type="number" id="pi" value="0">
+
+
+
+            <button id="btnAdd">
+
+                Ajouter / Modifier
+
+            </button>
+
+
+
+        </section>
+
+
+
+        <!-- EXCEL -->
+
+
+
+        <section class="card">
+
+
+
+            <h3>Modèle Excel</h3>
+
+
+
+            <input type="file"
+
+                   id="excelTemplate"
+
+                   accept=".xlsx">
+
+
+
+            <button id="btnGenerateExcel">
+
+                Générer le fichier étude
+
+            </button>
+
+
+
+            <button id="btnGenereExcel">
+
+                Générer EXCEL
+
+            </button>
+
+
+
+        </section>
+
+
+
+        <!-- RESUME -->
+
+
+
+        <section class="card">
+
+
+
+            <h3>Longueurs Totales par DN</h3>
+
+
+
+            <div class="summary-grid">
+
+
+
+                <div id="sum75">DN75 : 0</div>
+
+                <div id="sum90">DN90 : 0</div>
+
+                <div id="sum110">DN110 : 0</div>
+
+                <div id="sum160">DN160 : 0</div>
+
+                <div id="sum225">DN225 : 0</div>
+
+                <div id="sum315">DN315 : 0</div>
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+        <!-- TABLEAU -->
+
+
+
+        <section class="card">
+
+
+
+            <h3>Liste des Tronçons</h3>
+
+
+
+            <table id="tronconTable">
+
+
+
+                <thead>
+
+
+
+                    <tr>
+
+
+
+                        <th>Tronçon</th>
+
+                        <th>DN</th>
+
+                        <th>TN</th>
+
+                        <th>Chaussée</th>
+
+                        <th>Pavé</th>
+
+                        <th>Car.O</th>
+
+                        <th>Car.S</th>
+
+                        <th>Béton</th>
+
+                        <th>V<=150</th>
+
+                        <th>V>150</th>
+
+                        <th>R<=200</th>
+
+                        <th>R>200</th>
+
+                        <th>Perçage</th>
+
+                        <th>PI</th>
+
+                        <th>Modifier</th>
+
+                        <th>Supprimer</th>
+
+
+
+                    </tr>
+
+
+
+                </thead>
+
+
+
+                <tbody>
+
+
+
+                </tbody>
+
+
+
+            </table>
+
+
+
+        </section>
+
+
+
+    </main>
+
+
+
+</div>
+
+
+
+<script src="js/app.js"></script>
+
+<script src="js/excel.js"></script>
+
+
+
+</body>
+
+</html>
